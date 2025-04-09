@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+          html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;  /* Prevent horizontal scrollbar */
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden !important;
+}
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #1A4D2E, #2E8B57);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            
+        }
+
+        /* Logo on the left */
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        .logo img {
+    width: 120px; /* Adjust as needed */
+    height: 40px;
+    display: block;
+}
+
+        /* Navigation Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0 60px 0 0 ;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        /* Hover animation */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: white;
+            left: 0;
+            bottom: -4px;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Hamburger Button */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding-right: 3rem;
+            z-index: 1001;
+        }
+
+        /* Overlay Effect */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Slide-in Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background: #1A4D2E;
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            padding-top: 5rem;
+            transition: right 0.5s ease;
+            z-index: 1000;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            transition: background 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            background: #2E8B57;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+        .foundation-hero {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    background: url('./assets/images/atmfdtn.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    width: 100vw;
+    height: 100%;
+    background: rgba(0, 128, 0, 0.5); /* Green overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    overflow: hidden !important;
+
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.hero-btn {
+    display: inline-block;
+    background: white;
+    color: green;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.hero-btn:hover {
+    background: lightgray;
+}
+    
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
+.about-foundation {
+    padding: 80px 10%;
+    background: #f9f9f9;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    max-width: 600px;
+}
+
+.about-text h2 {
+    font-size: 2.2rem;
+    color: green;
+    margin-bottom: 15px;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: justify;
+            text-justify: inter-word;
+}
+
+.about-btn {
+    display: inline-block;
+    background: green;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.about-btn:hover {
+    background: darkgreen;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image img {
+        max-width: 100%;
+    }
+}
+.foundation-initiatives {
+    padding: 80px 10%;
+    background: #fff;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    color: green;
+    margin-bottom: 40px;
+}
+
+.initiatives-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.initiative-card {
+    background: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.initiative-card:hover {
+    transform: translateY(-5px);
+}
+
+.initiative-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    color: green;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .initiatives-container {
+        grid-template-columns: 1fr;
+    }
+}
+.success-stories {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #008000;
+}
+
+.section-description {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+/* Grid Layout */
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Story Cards */
+.story-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Image */
+.story-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Story Content */
+.story-content {
+    padding: 20px;
+    text-align: left;
+}
+
+.story-content h3 {
+    font-size: 1.5rem;
+    color: #008000;
+}
+
+.story-content p {
+    font-size: 1rem;
+    color: #666;
+    margin: 10px 0;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #008000;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.footer {
+    background-color: #008000;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 1em;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer-social a {
+    color: white;
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: #FFD700;
+}
+
+@media (max-width: 768px) {
+    .footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-social {
+        margin-top: 10px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="assets/images/logo4.png" alt="Logo">
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="project.html">Projects</a></li>
+            <li><a href="foundation.html">Foundation</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger">☰</button>
+    </nav>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="project.html">Projects</a>
+        <a href="foundation.html">Foundation</a>
+    </div>
+
+    <section class="foundation-hero">
+        <div class="hero-overlay">
+            <div class="hero-content" data-aos="fade-up">
+                <h1>Empowering Lives, Building a Better Future</h1>
+                <p>ATM Gwarzo Foundation is dedicated to uplifting the less privileged through education, healthcare, and community support.</p>
+                <a href="#about" class="hero-btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-foundation" id="about">
+        <div class="about-container">
+            <!-- Image Section -->
+            <div class="about-image" data-aos="fade-right">
+                <img src="./assets/images/atmvocational.jpg" alt="ATM Gwarzo Foundation">
+            </div>
+    
+            <!-- Text Section -->
+            <div class="about-text" data-aos="fade-left">
+                <h2>About ATM Gwarzo Foundation</h2>
+                <p>The ATM Gwarzo Foundation is a philanthropic organization dedicated to empowering the less privileged through various initiatives, including education, healthcare, and community support.</p>
+                <p>Founded by Abdullahi Tijjani Muhammad Gwarzo, the foundation aims to create a lasting impact on society by uplifting those in need and fostering a culture of compassion and development.</p>
+                <p>With numerous successful programs and outreach efforts, the foundation has received recognition for its unwavering commitment to social welfare and humanitarian service.</p>
+                <a href="#initiatives" class="about-btn">Our Initiatives</a>
+            </div>
+        </div>
+    </section>
+    <section class="foundation-initiatives" id="initiatives">
+        <h2 class="section-title" data-aos="fade-up">Our Initiatives</h2>
+        <div class="initiatives-container">
+            <!-- Initiative 1 -->
+            <div class="initiative-card" data-aos="fade-up">
+                <img src="./assets/images/atmfdtn7.jpg" alt="Educational Support">
+                <div class="card-content">
+                    <h3>Educational Support</h3>
+                    <p>Providing scholarships, school materials, and mentorship programs to underprivileged students.</p>
+                </div>
+            </div>
+    
+            <!-- Initiative 2 -->
+            <div class="initiative-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="./assets/images/atmfdtn1.jpg" alt="Healthcare Assistance">
+                <div class="card-content">
+                    <h3>Healthcare Assistance</h3>
+                    <p>Supporting medical treatment, free health camps, and awareness campaigns for better well-being.</p>
+                </div>
+            </div>
+    
+            <!-- Initiative 3 -->
+            <div class="initiative-card" data-aos="fade-up" data-aos-delay="400">
+                <img src="./assets/images/atmfdtn2.jpg" alt="Community Empowerment">
+                <div class="card-content">
+                    <h3>Community Empowerment</h3>
+                    <p>Skills training, small business funding, and empowerment programs for economic growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="success-stories">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Success Stories</h2>
+            <p class="section-description" data-aos="fade-up">
+                Real-life stories of impact and transformation brought by the ATM Foundation.
+            </p>
+    
+            <div class="stories-grid">
+                <!-- Story 1 -->
+                <div class="story-card" data-aos="fade-up">
+                    <img src="./assets/images/atmfdtn3.jpg" alt="Success Story 1">
+                    <div class="story-content">
+                        <h3>Empowering Women Through Education</h3>
+                        <p>Through our scholarship program, Fatima was able to complete her university education...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+    
+                <!-- Story 2 -->
+                <div class="story-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="./assets/images/atmfdtn1.jpg" alt="Success Story 2">
+                    <div class="story-content">
+                        <h3>Health Support for Vulnerable Communities</h3>
+                        <p>We provided medical assistance to over 500 families in remote areas...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+    
+                <!-- Story 3 -->
+                <div class="story-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="./assets/images/atmfdtn2.jpg" alt="Success Story 3">
+                    <div class="story-content">
+                        <h3>Creating Jobs for the Youth</h3>
+                        <p>Our skills training program helped many unemployed youths start businesses...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                <!-- Story 3 -->
+                <div class="story-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="./assets/images/atmfdtn4.jpg" alt="Success Story 3">
+                    <div class="story-content">
+                        <h3>Creating Jobs for the Youth</h3>
+                        <p>Our skills training program helped many unemployed youths start businesses...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                <!-- Story 3 -->
+                <div class="story-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="./assets/images/atmfdtn5.jpg" alt="Success Story 3">
+                    <div class="story-content">
+                        <h3>Creating Jobs for the Youth</h3>
+                        <p>Our skills training program helped many unemployed youths start businesses...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+    
+                <!-- Story 4 -->
+                <div class="story-card" data-aos="fade-up" data-aos-delay="600">
+                    <img src="./assets/images/atmfdtn6.jpg" alt="Success Story 4">
+                    <div class="story-content">
+                        <h3>Providing Shelter for the Homeless</h3>
+                        <p>Through ATM Foundation’s housing initiative, families found a safe home...</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+ 
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Abdullahi Tijjani Muhammad Gwarzo. All Rights Reserved.</p>
+            <div class="footer-social">
+                <a href="https://facebook.com/example" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com/example" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/example" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com/in/example" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script>
+         // Mobile Menu Toggle
+         const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('overlay');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
+
+    </script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true,
+    });
+</script>
+
+</body>
+</html>
